@@ -14,7 +14,7 @@ class User:
 
     def __init__(self, nickname: str, password: int, age: int):
         self.nickname = nickname
-        self.password = password
+        self.password = hash(password)
         self.age = age
 
     def __eq__(self, other):
@@ -75,7 +75,7 @@ class UrTube:
 
     def log_in(self, nickname: str, password: int):
         for i in self.users:
-            if i.nickname == nickname and hash(i.password) == hash(password):
+            if i.nickname == nickname and i.password == hash(password):
                 self.current_user = i
                 return self.current_user
 
@@ -145,3 +145,4 @@ if __name__ == '__main__':
 
     # Попытка воспроизведения несуществующего видео
     ur.watch_video('Лучший язык программирования 2024 года!')
+
